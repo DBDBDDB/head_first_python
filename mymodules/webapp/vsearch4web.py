@@ -34,12 +34,11 @@ def entry_page() -> 'html':
 @app.route('/viewlog')
 def view_the_log() -> str:
     contents = []
-    with open('vsearch.log') as logs:
-        for lg in logs:
-            sub_content = []
-            for item in lg.split('|'):
-                sub_content.append(escape(item))
-            contents.append(sub_content)
+    with open('vsearch.log') as log:
+        for line in log:
+            contents.append([])
+            for item in line.split('|'):
+                contents[-1].append(escape(item))
     return str(contents)
 
 
